@@ -50,18 +50,6 @@ function addBookToLibrary() {
         displaybooks();
 }
 
-/* addBookToLibrary(); */
-const hobbit = new Book('The Hobbutt', 'J.R.R Tolkien', '295', 'read');
-const book1 = new Book('Franz flavoured Chemistry', 'Franz Langmann', '500', 'Read');
-const book2 = new Book ('Chrochet Cooking for Dummies', 'Ursula Bergman', '212', 'Not read');
-const book3 = new Book('UX elderly restrooms', 'Jesus Santiago', '665', 'Read');
-const book4 = new Book('Energetic Spring Rolling', 'Roger Fitwitzer', '320', 'Read');
-        
-myLibrary.push(hobbit);
-myLibrary.push(book1);
-myLibrary.push(book2);
-myLibrary.push(book3);
-myLibrary.push(book4);
 
 displaybooks();
 
