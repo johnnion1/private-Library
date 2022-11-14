@@ -35,6 +35,8 @@ for(let i = 0; i < myLibrary.length; i++) {
         removeBook.appendChild(removeIcon)
         removeBook.addEventListener('click', () => {
                 //.. cardContainer.removeChild (data-attribute of book)
+        myLibrary.splice(myLibrary.findIndex(item => item.dataindex === i), 1);
+        displaybooks();
         })
         bookOptions.appendChild(removeBook);
         bookCard.appendChild(bookOptions);
@@ -172,7 +174,7 @@ submitNew.addEventListener('click', (event) => {
         event.preventDefault();
         addBookToLibrary(ftitle.value, fauthor.value, 
                         fpages.value, fread.value);
-        /* reloadDisplay(); */
+        reloadDisplay();
 });
 
 }
@@ -183,14 +185,16 @@ newBtn.addEventListener('click', () => {
 
 
 
-/* function reloadDisplay() {
-const cont = document.querySelector('.container');
+function reloadDisplay() {
+let cont = document.querySelector('.container');
+let cardCont = document.querySelector('.cardContainer');
+let form = document.querySelector('#formOverlay');
         cardContainer.innerHTML = '';
-        displayBooks();
+        displaybooks();
       //  add if( formOverlay is child of cont )
-        cont.removeChild(formOverlay);
+        cont.removeChild(form);
 }
- */
+
 
 
  // 2. Give us an array of the inventors first and last names
