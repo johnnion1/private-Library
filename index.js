@@ -12,11 +12,11 @@ function Book(title, author, pages, read) {
         this.dataindex = myLibrary.length;
 }
 
-const container = document.querySelector('.cardContainer');
+const cardContainer = document.querySelector('.cardContainer');
 
 function displaybooks() {
-        while (container.firstChild) {
-                container.removeChild(container.firstChild);
+        while (cardContainer.firstChild) {
+                cardContainer.removeChild(cardContainer.firstChild);
         }
 for(let i = 0; i < myLibrary.length; i++) {
         let bookCard = document.createElement('div');
@@ -34,18 +34,17 @@ for(let i = 0; i < myLibrary.length; i++) {
         removeIcon.src = 'pic.jpg';
         removeBook.appendChild(removeIcon)
         removeBook.addEventListener('click', () => {
-                //.. container.removeChild (data-attribute of book)
+                //.. cardContainer.removeChild (data-attribute of book)
         })
         bookOptions.appendChild(removeBook);
         bookCard.appendChild(bookOptions);
 
-        container.appendChild(bookCard);
+        cardContainer.appendChild(bookCard);
 };
 }
 
-function addBookToLibrary() {
-        let newBook = new Book(prompt('Title?', 'bloombergs crot'), prompt('Author?', 'mittle bloomborb'), 
-                                prompt('Pages?', '345'), prompt('Read?', 'Not Read'));
+function addBookToLibrary(title, author, pages, read) {
+        let newBook = new Book(title, author, pages, read);
         myLibrary.push(newBook);
         displaybooks();
 }
@@ -171,10 +170,9 @@ showForm();
 
 submitNew.addEventListener('click', (event) => {
         event.preventDefault();
-        /* addBookToLibrary(ftitle.value, fauthor.value, 
-                        fpages.value, fread.value); */
-                        alert('success!');
-
+        addBookToLibrary(ftitle.value, fauthor.value, 
+                        fpages.value, fread.value);
+        /* reloadDisplay(); */
 });
 
 }
@@ -185,9 +183,14 @@ newBtn.addEventListener('click', () => {
 
 
 
-
-
-
+/* function reloadDisplay() {
+const cont = document.querySelector('.container');
+        cardContainer.innerHTML = '';
+        displayBooks();
+      //  add if( formOverlay is child of cont )
+        cont.removeChild(formOverlay);
+}
+ */
 
 
  // 2. Give us an array of the inventors first and last names
