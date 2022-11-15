@@ -20,16 +20,16 @@ function displaybooks() {
         }
 for(let i = 0; i < myLibrary.length; i++) {
         let bookCard = document.createElement('div');
-        bookCard.className = 'bookCard';
+        bookCard.classList.toggle('bookCard');
         let bookText = document.createElement('div');
-        bookText.className = 'bookText';
+        bookText.classList.toggle('bookText');
         bookText.textContent = myLibrary[i].info();
         bookCard.appendChild(bookText);
         let bookOptions = document.createElement('div');
-        bookOptions.className = 'bookOptions';
+        bookOptions.classList.toggle('bookOptions');
         let removeBook = document.createElement('button');
         removeBook.type = 'button';
-        removeBook.className = 'removeBook'
+        removeBook.classList.toggle('removeBook');
         let removeIcon = document.createElement('img');
         removeIcon.src = 'pic.jpg';
         removeBook.appendChild(removeIcon)
@@ -78,7 +78,7 @@ function showForm() {
         bookForm.setAttribute('id', 'bookForm');
 
         let formItem1 = document.createElement('div');
-        formItem1.classList = 'formItem';
+        formItem1.classList.toggle('formItem');
         let ftitlelabel = document.createElement('label');
         ftitlelabel.setAttribute('for', 'ftitle');
         ftitlelabel.textContent = 'Title';
@@ -93,7 +93,7 @@ function showForm() {
 
 
         let formItem2 = document.createElement('div');
-        formItem2.classList = 'formItem';
+        formItem2.classList.toggle('formItem'); 
         let fauthorlabel = document.createElement('label');
         fauthorlabel.setAttribute('for', 'fauthor');
         fauthorlabel.textContent = 'Author';
@@ -107,7 +107,7 @@ function showForm() {
         bookForm.appendChild(formItem2);
 
         let formItem3 = document.createElement('div');
-        formItem3.classList = 'formItem';
+        formItem3.classList.toggle('formItem');
         let fpageslabel = document.createElement('label');
         fpageslabel.setAttribute('for', 'fpages');
         fpageslabel.textContent = 'Nr. Pages';
@@ -135,7 +135,7 @@ function showForm() {
         formRadio.appendChild(radio1label);
 
         let spacer = document.createElement('div');
-        spacer.classList = "spacer";
+        spacer.classList.toggle('spacer');
         formRadio.appendChild(spacer);
 
         let radio2input = document.createElement('input');
