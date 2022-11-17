@@ -86,6 +86,7 @@ function showForm() {
         ftitleinput.setAttribute('type', 'text');
         ftitleinput.setAttribute('id', 'ftitle');
         ftitleinput.setAttribute('name', 'ftitle');
+        ftitleinput.setAttribute('placeholder', 'Bedrock Nights');
 
         formItem1.appendChild(ftitlelabel);
         formItem1.appendChild(ftitleinput);
@@ -101,6 +102,7 @@ function showForm() {
         fauthorinput.setAttribute('type', 'text');
         fauthorinput.setAttribute('id', 'fauthor');
         fauthorinput.setAttribute('name', 'fauthor');
+        fauthorinput.setAttribute('placeholder', 'Ben Johnson');
 
         formItem2.appendChild(fauthorlabel);
         formItem2.appendChild(fauthorinput);
@@ -115,6 +117,7 @@ function showForm() {
         fpagesinput.setAttribute('type', 'tel');
         fpagesinput.setAttribute('id', 'fpages');
         fpagesinput.setAttribute('name', 'fpages');
+        fpagesinput.setAttribute('placeholder', '200');
 
         formItem3.appendChild(fpageslabel);
         formItem3.appendChild(fpagesinput);
