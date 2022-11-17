@@ -1,16 +1,19 @@
 let myLibrary = [];
 
-function Book(title, author, pages, read) {
+function Book(title, author, pages) {
         this.title = title;
         this.author = author;
         this.pages = pages;
-        this.read = read;
+        this.read = "not read";
         this.info = function () {
                 return `${title} by ${author}, ${pages} pages, ${read}.`;
         }
-      
         this.dataindex = myLibrary.length;
 }
+Book.prototype.readit = function() {
+        console.log(this.pages);
+}
+
 
 const cardContainer = document.querySelector('.cardContainer');
 
@@ -143,6 +146,7 @@ function showForm() {
         radio2input.setAttribute('id', 'fnotread');
         radio2input.setAttribute('name', 'fnotread');
         radio2input.setAttribute('value', 'notread');
+        radio2input.setAttribute('checked', 'checked');
         let radio2label = document.createElement('label');
         radio2label.setAttribute('for', 'fread');
         radio2label.textContent = 'Not Read';
