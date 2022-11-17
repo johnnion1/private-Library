@@ -1,17 +1,20 @@
 let myLibrary = [];
 
-function Book(title, author, pages) {
+function Book(title, author, pages, read) {
         this.title = title;
         this.author = author;
         this.pages = pages;
-        this.read = "not read";
+        this.read = read;
         this.info = function () {
                 return `${title} by ${author}, ${pages} pages, ${read}.`;
         }
         this.dataindex = myLibrary.length;
 }
 Book.prototype.readit = function() {
-        console.log(this.pages);
+        if ( this.read == 'not read' ) {
+                this.read = 'read';
+        } else this.read = 'not read';
+        reloadDisplay();
 }
 
 
@@ -196,11 +199,15 @@ let form = document.querySelector('#formOverlay');
         cardContainer.innerHTML = '';
         displaybooks();
       //  add if( formOverlay is child of cont )
+       if (form) {
         cont.removeChild(form);
+       } 
 }
 
 
-
+const book1 = new Book('Doodle', 'Cockman', '231', 'read');
+myLibrary.push(book1);
+reloadDisplay()
  // 2. Give us an array of the inventors first and last names
  //const info in Book constructor ?
  //  const fullNames = inventors.map(inventor => `${inventor.first} ${inventor.last}`);
