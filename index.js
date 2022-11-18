@@ -5,11 +5,18 @@ function Book(title, author, pages, read) {
         this.author = author;
         this.pages = pages;
         this.read = read;
-        this.info = function () {
-                return `${title} by ${author}, ${pages} pages, ${read}.`;
-        }
-      
         this.dataindex = myLibrary.length;
+}
+Book.prototype.readit = function() {
+        if ( this.read == 'not read' ) {
+                this.read = 'read';
+        } else this.read = 'not read';
+        reloadDisplay();
+}
+Book.prototype.info = function() {
+        this.info = function () {
+        return `${this.title} by ${this.author}, ${this.pages} pages, ${this.read}.`;
+        }
 }
 
 const cardContainer = document.querySelector('.cardContainer');
@@ -32,12 +39,30 @@ for(let i = 0; i < myLibrary.length; i++) {
         removeBook.classList.toggle('removeBook');
         let removeIcon = document.createElement('img');
         removeIcon.src = 'pic.jpg';
-        removeBook.appendChild(removeIcon)
+        removeBook.appendChild(removeIcon);
         removeBook.addEventListener('click', () => {
                 //.. cardContainer.removeChild (data-attribute of book)
         myLibrary.splice(myLibrary.findIndex(item => item.dataindex === i), 1);
         displaybooks();
         })
+
+        let readButton = document.createElement('button');
+// change into toggle switch later:
+
+// Style 'read' class, style default beforehand. Then toggle read class as needed
+        readButton.type = 'button';
+        readButton.classList.toggle('removeBook');
+        let readIcon = document.createElement('img');
+        readIcon.src = 'book.svg';
+        readButton.appendChild(readIcon);
+        readButton.addEventListener('click', () => {
+                myLibrary[i].readit();
+                if (readButton.classList.contains('read')) {
+                readButton.classList.toggle('read');
+                }
+        })
+        bookOptions.appendChild(readButton);
+
         bookOptions.appendChild(removeBook);
         bookCard.appendChild(bookOptions);
 
@@ -123,20 +148,23 @@ function showForm() {
         formItem3.appendChild(fpagesinput);
         bookForm.appendChild(formItem3);
 
-        let formRadio = document.createElement('div');
-        formRadio.classList = 'formItem Select';
-        let radio1input = document.createElement('input');
-        radio1input.setAttribute('type', 'radio');
-        radio1input.setAttribute('id', 'fread');
-        radio1input.setAttribute('name', 'fread');
-        radio1input.setAttribute('value', 'read');
-        let radio1label = document.createElement('label');
-        radio1label.setAttribute('for', 'fread');
-        radio1label.textContent = 'Read';
+        
 
-        formRadio.appendChild(radio1input);
-        formRadio.appendChild(radio1label);
+        let formReaditem= document.createElement('div');
+        formReaditem.classList = 'formItem Select';
+        let freadinput = document.createElement('input');
+        freadinput.setAttribute('type', 'checkbox');
+        freadinput.setAttribute('id', 'fread');
+        freadinput.setAttribute('name', 'fread');
+        freadinput.setAttribute('value', 'read');
+        let freadlabel = document.createElement('label');
+        freadlabel.setAttribute('for', 'fread');
+        freadlabel.textContent = 'Read?';
 
+        formReaditem.appendChild(freadinput);
+        formReaditem.appendChild(freadlabel);
+        bookForm.appendChild(formReaditem);
+/* 
         let spacer = document.createElement('div');
         spacer.classList.toggle('spacer');
         formRadio.appendChild(spacer);
@@ -146,14 +174,15 @@ function showForm() {
         radio2input.setAttribute('id', 'fnotread');
         radio2input.setAttribute('name', 'fnotread');
         radio2input.setAttribute('value', 'notread');
+        radio2input.setAttribute('checked', 'checked');
         let radio2label = document.createElement('label');
         radio2label.setAttribute('for', 'fread');
-        radio2label.textContent = 'Not Read';
+        radio2label.textContent = 'Not Read'; */
 
 /* Radio label left-side spacing different from original */
-        formRadio.appendChild(radio2input);
+       /*  formRadio.appendChild(radio2input);
         formRadio.appendChild(radio2label);
-        bookForm.appendChild(formRadio);
+        bookForm.appendChild(formRadio); */
 
         /* put submit button in .formItem div? */
 
@@ -175,8 +204,13 @@ showForm();
 
 submitNew.addEventListener('click', (event) => {
         event.preventDefault();
+        let readCheck = null;
+        if (!fread.checked) { 
+                readCheck = 'not read';
+        }
+        else { readCheck = fread.value }
         addBookToLibrary(ftitle.value, fauthor.value, 
-                        fpages.value, fread.value);
+                        fpages.value, readCheck);
         reloadDisplay();
 });
 
@@ -195,9 +229,10 @@ let form = document.querySelector('#formOverlay');
         cardContainer.innerHTML = '';
         displaybooks();
       //  add if( formOverlay is child of cont )
+       if (form) {
         cont.removeChild(form);
+       } 
 }
-
 
 
  // 2. Give us an array of the inventors first and last names
