@@ -39,12 +39,30 @@ for(let i = 0; i < myLibrary.length; i++) {
         removeBook.classList.toggle('removeBook');
         let removeIcon = document.createElement('img');
         removeIcon.src = 'pic.jpg';
-        removeBook.appendChild(removeIcon)
+        removeBook.appendChild(removeIcon);
         removeBook.addEventListener('click', () => {
                 //.. cardContainer.removeChild (data-attribute of book)
         myLibrary.splice(myLibrary.findIndex(item => item.dataindex === i), 1);
         displaybooks();
         })
+
+        let readButton = document.createElement('button');
+// change into toggle switch later:
+
+// Style 'read' class, style default beforehand. Then toggle read class as needed
+        readButton.type = 'button';
+        readButton.classList.toggle('removeBook');
+        let readIcon = document.createElement('img');
+        readIcon.src = 'book.svg';
+        readButton.appendChild(readIcon);
+        readButton.addEventListener('click', () => {
+                myLibrary[i].readit();
+                if (readButton.classList.contains('read')) {
+                readButton.classList.toggle('read');
+                }
+        })
+        bookOptions.appendChild(readButton);
+
         bookOptions.appendChild(removeBook);
         bookCard.appendChild(bookOptions);
 
