@@ -215,6 +215,7 @@ showForm();
 
 submitNew.addEventListener('click', (event) => {
         event.preventDefault();
+if (ftitle.value && fauthor.value && fpages.value) {
         let readCheck = null;
         if (!fread.checked) { 
                 readCheck = 'not read';
@@ -223,6 +224,8 @@ submitNew.addEventListener('click', (event) => {
         addBookToLibrary(ftitle.value, fauthor.value, 
                         fpages.value, readCheck);
         reloadDisplay();
+}
+else { alert('Please fill out the form.') }
 });
 
 }
