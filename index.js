@@ -15,7 +15,7 @@ Book.prototype.readit = function() {
 }
 Book.prototype.info = function() {
         this.info = function () {
-                return `${this.title} by ${this.author}, ${this.pages} pages, ${this.read}.`;
+        return `${this.title} by ${this.author}, ${this.pages} pages, ${this.read}.`;
         }
 }
 
@@ -145,20 +145,23 @@ function showForm() {
         formItem3.appendChild(fpagesinput);
         bookForm.appendChild(formItem3);
 
-        let formRadio = document.createElement('div');
-        formRadio.classList = 'formItem Select';
-        let radio1input = document.createElement('input');
-        radio1input.setAttribute('type', 'radio');
-        radio1input.setAttribute('id', 'fread');
-        radio1input.setAttribute('name', 'fread');
-        radio1input.setAttribute('value', 'read');
-        let radio1label = document.createElement('label');
-        radio1label.setAttribute('for', 'fread');
-        radio1label.textContent = 'Read';
+        
 
-        formRadio.appendChild(radio1input);
-        formRadio.appendChild(radio1label);
+        let formReaditem= document.createElement('div');
+        formReaditem.classList = 'formItem Select';
+        let freadinput = document.createElement('input');
+        freadinput.setAttribute('type', 'checkbox');
+        freadinput.setAttribute('id', 'fread');
+        freadinput.setAttribute('name', 'fread');
+        freadinput.setAttribute('value', 'read');
+        let freadlabel = document.createElement('label');
+        freadlabel.setAttribute('for', 'fread');
+        freadlabel.textContent = 'Read?';
 
+        formReaditem.appendChild(freadinput);
+        formReaditem.appendChild(freadlabel);
+        bookForm.appendChild(formReaditem);
+/* 
         let spacer = document.createElement('div');
         spacer.classList.toggle('spacer');
         formRadio.appendChild(spacer);
@@ -171,12 +174,12 @@ function showForm() {
         radio2input.setAttribute('checked', 'checked');
         let radio2label = document.createElement('label');
         radio2label.setAttribute('for', 'fread');
-        radio2label.textContent = 'Not Read';
+        radio2label.textContent = 'Not Read'; */
 
 /* Radio label left-side spacing different from original */
-        formRadio.appendChild(radio2input);
+       /*  formRadio.appendChild(radio2input);
         formRadio.appendChild(radio2label);
-        bookForm.appendChild(formRadio);
+        bookForm.appendChild(formRadio); */
 
         /* put submit button in .formItem div? */
 
@@ -198,8 +201,12 @@ showForm();
 
 submitNew.addEventListener('click', (event) => {
         event.preventDefault();
-        addBookToLibrary(ftitle.value, fauthor.value, 
-                        fpages.value, fread.value);
+        if (!fread.value) { addBookToLibrary(ftitle.value, fauthor.value, 
+                        fpages.value, "TESTsuccess") ;}
+       
+        /* addBookToLibrary(ftitle.value, fauthor.value, 
+                        fpages.value, fread.value); */
+        
         reloadDisplay();
 });
 
