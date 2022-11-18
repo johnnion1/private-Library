@@ -91,6 +91,17 @@ function showForm() {
         formOverlay.setAttribute('id', 'formOverlay');
         formOuter.setAttribute('id', 'formOuter');
 
+        let closeButton = document.createElement('button');
+        let closeX = document.createElement('img');
+        closeX.src = "";
+        closeButton.setAttribute('type', 'button');
+        closeButton.setAttribute('id', 'closeButton');
+        closeButton.appendChild(closeX);
+        closeButton.addEventListener('click', () => {
+                reloadDisplay();
+        })
+        formOuter.appendChild(closeButton);
+
         let formElement = document.createElement('form');
         formElement.action = './';
         formElement.method = 'post';
