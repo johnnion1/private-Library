@@ -201,12 +201,13 @@ showForm();
 
 submitNew.addEventListener('click', (event) => {
         event.preventDefault();
-        if (!fread.value) { addBookToLibrary(ftitle.value, fauthor.value, 
-                        fpages.value, "TESTsuccess") ;}
-       
-        /* addBookToLibrary(ftitle.value, fauthor.value, 
-                        fpages.value, fread.value); */
-        
+        let readCheck = null;
+        if (!fread.checked) { 
+                readCheck = 'not read';
+        }
+        else { readCheck = fread.value }
+        addBookToLibrary(ftitle.value, fauthor.value, 
+                        fpages.value, readCheck);
         reloadDisplay();
 });
 
