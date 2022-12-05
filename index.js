@@ -1,22 +1,23 @@
 let myLibrary = [];
 
-function Book(title, author, pages, read) {
-        this.title = title;
-        this.author = author;
-        this.pages = pages;
-        this.read = read;
-        this.dataindex = myLibrary.length;
-}
-Book.prototype.readit = function() {
-        if ( this.read == 'not read' ) {
+class Book {
+        constructor(title, author, pages, read) {
+                this.title = title;
+                this.author = author;
+                this.pages = pages;
+                this.read = read;
+                this.dataindex = myLibrary.length;
+        }
+        readit() {
+                if (this.read == 'not read')     {         //this points where?
                 this.read = 'read';
-        } else this.read = 'not read';
-        reloadDisplay();
-}
-Book.prototype.info = function() {
-        this.info = function () {
+                } else this.read = 'not read';
+                reloadDisplay();
+        }
+        info() {
         return `${this.title} by ${this.author}, ${this.pages} pages, ${this.read}.`;
         }
+
 }
 
 const cardContainer = document.querySelector('.cardContainer');
